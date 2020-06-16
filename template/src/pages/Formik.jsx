@@ -6,7 +6,7 @@ const FormikPage = () => {
   return (
     <Layout>
       <FlexCenter column>
-        <h1>FormikPage</h1>
+        <h1>Formik Page</h1>
       </FlexCenter>
     </Layout>
   );

@@ -1,6 +1,7 @@
 import React from "react";
 import { List, ListItem, ListItemIcon, ListItemText } from "@material-ui/core";
 import DashboardIcon from "@material-ui/icons/Dashboard";
+import ListAltIcon from "@material-ui/icons/ListAlt";
 import { useHistory } from "react-router";
 
 const MainNavigation = () => {
@@ -18,9 +19,9 @@ const MainNavigation = () => {
       </ListItem>
       <ListItem button onClick={() => navigateTo("/formik")}>
         <ListItemIcon>
-          <DashboardIcon />
+          <ListAltIcon />
         </ListItemIcon>
-        <ListItemText primary={"FormikPage"} />
+        <ListItemText primary={"Formik Page"} />
       </ListItem>
     </List>
   );
