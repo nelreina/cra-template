@@ -1,17 +1,15 @@
 import React from "react";
-import Features from "../components/Features";
 import FlexCenter from "../components/layout/FlexCenter";
 import Layout from "../components/layout/Layout";
 
-const Dashboard = () => {
+const FormikPage = () => {
   return (
     <Layout>
       <FlexCenter column>
-        <h1>Dashboard</h1>
-        <Features />
+        <h1>FormikPage</h1>
       </FlexCenter>
     </Layout>
   );
 };
 
-export default Dashboard;
+export default FormikPage;

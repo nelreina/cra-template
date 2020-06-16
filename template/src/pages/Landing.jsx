@@ -1,11 +1,10 @@
 import React from "react";
 import FlexCenter from "../components/layout/FlexCenter";
-import { useUser } from "reactfire";
 import { Redirect } from "react-router";
-import { Button } from "material-ui/Button";
+import { Button } from "@material-ui/core";
 
 const Landing = () => {
-  const user = useUser();
+  const user = {};
 
   if (user) {
     return <Redirect to="/dashboard" />;
