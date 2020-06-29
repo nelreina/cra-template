@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const MenuAppBar = ({ className }) => {
+const MenuAppBar = ({ className, title }) => {
   const classes = useStyles();
   const user = {};
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -39,7 +39,9 @@ const MenuAppBar = ({ className }) => {
   return (
     <AppBar position="fixed" className={className}>
       <Toolbar>
-        <Typography variant="h6" className={classes.title}></Typography>
+        <Typography variant="h6" className={classes.title}>
+          {title}
+        </Typography>
         {user && (
           <div>
             <IconButton

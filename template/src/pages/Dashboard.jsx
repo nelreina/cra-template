@@ -5,7 +5,7 @@ import Layout from "../components/layout/Layout";
 
 const Dashboard = () => {
   return (
-    <Layout>
+    <Layout title="Dashboard">
       <FlexCenter column>
         <h1>Dashboard</h1>
         <Features />

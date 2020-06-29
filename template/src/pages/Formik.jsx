@@ -4,7 +4,7 @@ import Layout from "../components/layout/Layout";
 
 const FormikPage = () => {
   return (
-    <Layout>
+    <Layout title="FormikPage">
       <FlexCenter column>
         <h1>Formik Page</h1>
       </FlexCenter>
