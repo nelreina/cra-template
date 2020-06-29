@@ -39,7 +39,7 @@ const MenuAppBar = ({ className, title }) => {
   return (
     <AppBar position="fixed" className={className}>
       <Toolbar>
-        <Typography variant="h6" className={classes.title}>
+        <Typography variant="h3" className={classes.title}>
           {title}
         </Typography>
         {user && (

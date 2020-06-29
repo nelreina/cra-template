@@ -10,13 +10,13 @@ import MainNavigation from "./MainNavigation";
 
 const drawerWidth = 240;
 
-const Layout = ({ children }) => {
+const Layout = ({ children, title }) => {
   const classes = useStyles();
 
   return (
     <div className={classes.root}>
       <CssBaseline />
-      <MenuAppBar className={classes.appBar} />
+      <MenuAppBar className={classes.appBar} title={title} />
       <Drawer
         className={classes.drawer}
         variant="permanent"
