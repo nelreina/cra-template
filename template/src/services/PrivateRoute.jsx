@@ -1,28 +1,15 @@
+import React from "react";
+import { Route, Navigate } from "react-router-dom";
+import { useAuth } from "./AuthProvider";
 
-import React, { useContext } from "react";
-import { Route, Redirect } from "react-router-dom";
+const PrivateRoute = ({ element: Component, path, ...props }) => {
+  const { user } = useAuth();
 
-import { AuthContext } from "./Auth";
-import { DataProvider } from "./dataContext";
+  if (!user) {
+    return <Navigate to="/back-office" />;
+  }
 
-const PrivateRoute = ({ component: RouteComponent, ...rest }) => {
-  const { currentUser } = useContext(AuthContext);
-
-  return (
-    <Route
-      {...rest}
-      render={routeProps =>
-        !!currentUser ? (
-          <DataProvider>
-            <RouteComponent {...routeProps} />
-          </DataProvider>
-        ) : (
-            <Redirect to={"/"} />
-          )
-      }
-    />
-  );
+  return <Route path={path} element={<Component />} {...props} />;
 };
 
-
-export default PrivateRoute
+export default PrivateRoute;

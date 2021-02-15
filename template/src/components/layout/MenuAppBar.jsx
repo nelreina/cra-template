@@ -8,6 +8,7 @@ import IconButton from "@material-ui/core/IconButton";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
+import { useAuth } from "../../services/AuthProvider";
 
 // import { Container } from '@material-ui/core';
 const useStyles = makeStyles((theme) => ({
@@ -24,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
 
 const MenuAppBar = ({ className, title }) => {
   const classes = useStyles();
-  const user = {};
+  const { user, logout } = useAuth();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
 
@@ -39,7 +40,7 @@ const MenuAppBar = ({ className, title }) => {
   return (
     <AppBar position="fixed" className={className}>
       <Toolbar>
-        <Typography variant="h3" className={classes.title}>
+        <Typography variant="h5" className={classes.title}>
           {title}
         </Typography>
         {user && (
@@ -51,6 +52,7 @@ const MenuAppBar = ({ className, title }) => {
               onClick={handleMenu}
               color="inherit"
             >
+              <span style={{ marginRight: "0.3em" }}>{user.username}</span>
               <AccountCircle />
             </IconButton>
             <Menu
@@ -68,9 +70,8 @@ const MenuAppBar = ({ className, title }) => {
               open={open}
               onClose={handleClose}
             >
-              {/* <MenuItem onClick={handleClose}>Profile</MenuItem> */}
-              <MenuItem onClick={handleClose}>{user.displayName}</MenuItem>
-              <MenuItem onClick={() => {}}>Sign out</MenuItem>
+              <MenuItem onClick={handleClose}>Profile</MenuItem>
+              <MenuItem onClick={logout}>Sign out</MenuItem>
             </Menu>
           </div>
         )}

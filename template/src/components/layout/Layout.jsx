@@ -7,11 +7,12 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import Divider from "@material-ui/core/Divider";
 import logo from "../../assets/logo.png";
 import MainNavigation from "./MainNavigation";
+import FlexCenter from "./FlexCenter";
 
-const drawerWidth = 240;
+const drawerWidth = 150;
 
-const Layout = ({ children, title }) => {
-  const classes = useStyles();
+const Layout = ({ children, title, padding = true, centered = false }) => {
+  const classes = useStyles({ padding });
 
   return (
     <div className={classes.root}>
@@ -24,15 +25,27 @@ const Layout = ({ children, title }) => {
           paper: classes.drawerPaper,
         }}
         anchor="left"
+        height="100vh"
       >
         <div className={classes.toolbar}>
-          <img src={logo} alt="Logo" width="100%" />
+          <img
+            className={classes.img}
+            src={logo}
+            alt="Logo"
+            width={drawerWidth}
+            height={"178px"}
+          />
         </div>
 
         <Divider />
-        <MainNavigation />
+        <MainNavigation drawerWidth={drawerWidth} />
       </Drawer>
-      <main className={classes.content}>{children}</main>
+      {centered && (
+        <main className={classes.content}>
+          <FlexCenter>{children}</FlexCenter>
+        </main>
+      )}
+      {!centered && <main className={classes.content}>{children}</main>}
     </div>
   );
 };
@@ -46,20 +59,27 @@ const useStyles = makeStyles((theme) => ({
   appBar: {
     width: `calc(100% - ${drawerWidth}px)`,
     marginLeft: drawerWidth,
+    backgroundColor: "white",
   },
   drawer: {
     width: drawerWidth,
     flexShrink: 0,
   },
   drawerPaper: {
+    backgroundColor: "#6f6aa8",
+    color: "white",
     width: drawerWidth,
+  },
+  img: {
+    backgroundColor: "#fff",
   },
   // necessary for content to be below app bar
   toolbar: theme.mixins.toolbar,
   content: {
     flexGrow: 1,
     backgroundColor: theme.palette.background.default,
-    padding: theme.spacing(3),
+    padding: (props) => (props.padding ? theme.spacing(3) : 0),
     marginTop: 64,
+    // height: "80vh",
   },
 }));

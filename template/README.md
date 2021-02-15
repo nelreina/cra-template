@@ -1,24 +1,16 @@
-### @nelreina/react-template-firebase
+### @nelreina/lcm-back-office
+
+LCMBV Back Office Application
 
 ### Before running
 
-- You need to create a .env file 
+- You need to create a .env file
 
 ```
 touch .env
 ```
 
 ```
-REACT_APP_apiKey=<apiKey>
-REACT_APP_authDomain=<authDomain>
-REACT_APP_databaseURL=<databaseURL>
-REACT_APP_projectId=<projectId>
-REACT_APP_storageBucket=<storageBucket>
-REACT_APP_messagingSenderId=<messagingSenderId>
-REACT_APP_appId=<appId>
+REACT_APP_API=http://localhost:1440
 
 ```
-
-
--  add (Firebase Web Credentials)
-

@@ -5,9 +5,19 @@ import {
   CardContent,
   CardActions,
   Button,
+  CardHeader,
 } from "@material-ui/core";
 
-const AppModal = ({ children, open, cancel, save }) => {
+const AppModal = ({
+  children,
+  open,
+  cancel,
+  title,
+  titleStyle,
+  width = "inherit",
+  maxWidth = "600px",
+  cancelButtonName = "Cancel",
+}) => {
   return (
     <Modal
       style={{
@@ -23,11 +33,12 @@ const AppModal = ({ children, open, cancel, save }) => {
       aria-describedby="simple-modal-description"
       disableBackdropClick
     >
-      <div style={{ maxWidth: "600px" }}>
+      <div style={{ width, maxWidth }}>
         <Card size="large">
+          {title && <CardHeader style={titleStyle} title={title} />}
           <CardContent>{children}</CardContent>
           <CardActions style={{ display: "flex", justifyContent: "flex-end" }}>
-            {cancel && <Button onClick={cancel}>Cancel</Button>}
+            {cancel && <Button onClick={cancel}>{cancelButtonName}</Button>}
           </CardActions>
         </Card>
       </div>

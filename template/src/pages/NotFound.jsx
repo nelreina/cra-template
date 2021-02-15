@@ -1,15 +1,16 @@
 import React from "react";
+import { Typography } from "@material-ui/core";
 import FlexCenter from "../components/layout/FlexCenter";
 import Layout from "../components/layout/Layout";
 
-const FormikPage = () => {
+const NotFound = () => {
   return (
-    <Layout title="FormikPage">
+    <Layout>
       <FlexCenter column>
-        <h1>Formik Page</h1>
+        <Typography variant="h2">404 | Page not found</Typography>
       </FlexCenter>
     </Layout>
   );
 };
 
-export default FormikPage;
+export default NotFound;

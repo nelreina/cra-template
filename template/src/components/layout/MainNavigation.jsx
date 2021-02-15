@@ -1,30 +1,44 @@
 import React from "react";
-import { List, ListItem, ListItemIcon, ListItemText } from "@material-ui/core";
-import DashboardIcon from "@material-ui/icons/Dashboard";
-import ListAltIcon from "@material-ui/icons/ListAlt";
-import { useHistory } from "react-router";
+import { List, ListItem, ListItemText } from "@material-ui/core";
+import { useNavigate } from "react-router";
+import { useAuth } from "../../services/AuthProvider";
+import FixedPosition from "./FixedPosition";
+import { useApp } from "../../services/AppProvider";
 
-const MainNavigation = () => {
-  const history = useHistory();
-
-  const navigateTo = (route) => history.replace(route);
-
-  return (
-    <List>
-      <ListItem button onClick={() => navigateTo("/dashboard")}>
-        <ListItemIcon>
-          <DashboardIcon />
-        </ListItemIcon>
-        <ListItemText primary={"Dashboard"} />
-      </ListItem>
-      <ListItem button onClick={() => navigateTo("/formik")}>
-        <ListItemIcon>
-          <ListAltIcon />
-        </ListItemIcon>
-        <ListItemText primary={"Formik Page"} />
-      </ListItem>
-    </List>
-  );
+const MainNavigation = ({ drawerWidth }) => {
+  const { role } = useAuth();
+  switch (role) {
+    case "authenticated":
+      return <ExampleMenu drawerWidth={drawerWidth} />;
+    default:
+      return null;
+  }
 };
 
 export default MainNavigation;
+
+const root = "/back-office";
+
+const ExampleMenu = ({ drawerWidth }) => {
+  const navigateTo = useNavigate();
+  const { formSettings } = useApp();
+
+  return (
+    <List>
+      <ListItem button onClick={() => navigateTo(`${root}/authenticated`)}>
+        <ListItemText primary={"Dashboard"} />
+      </ListItem>
+      <FixedPosition drawerWidth={drawerWidth}>
+        {formSettings.map((setting) => (
+          <ListItem
+            key={setting.id}
+            button
+            onClick={() => navigateTo(`${root}/settings/${setting.resource}`)}
+          >
+            <ListItemText primary={setting.menuLabel} />
+          </ListItem>
+        ))}
+      </FixedPosition>
+    </List>
+  );
+};
