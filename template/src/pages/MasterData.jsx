@@ -1,7 +1,7 @@
 import React, { Suspense } from "react";
 import { useParams } from "react-router-dom";
 import Layout from "../components/layout/Layout";
-import MaterialTable from "material-table";
+import AppTable from "../components/layout/AppTable";
 import { useQuery } from "react-query";
 import { fetchResource } from "../services/api";
 import { find } from "lodash";
@@ -13,7 +13,7 @@ const MasterData = () => {
   return (
     <Layout title="Settings" padding={false}>
       <Suspense fallback={"Loading Redflags... "}>
-        <ResourceData resource={resource} />
+        <ResourceTable resource={resource} />
       </Suspense>
     </Layout>
   );
@@ -21,25 +21,7 @@ const MasterData = () => {
 
 export default MasterData;
 
-const ResourceTable = ({ data, title, columns = [] }) => {
-  return (
-    <div style={{ maxWidth: "100%" }}>
-      <MaterialTable
-        columns={columns}
-        data={data}
-        title={title}
-        options={{
-          pageSize: 25,
-          pageSizeOptions: [25, 50],
-          headerStyle: { position: "sticky", top: 0 },
-          maxBodyHeight: "calc(100vh - 200px)",
-        }}
-      />
-    </div>
-  );
-};
-
-const ResourceData = ({ resource }) => {
+const ResourceTable = ({ resource }) => {
   const params = { resource };
   const { formSettings } = useApp();
   const { data } = useQuery([resource], async () => fetchResource(params), {
@@ -49,10 +31,16 @@ const ResourceData = ({ resource }) => {
   const setting = find(formSettings, { resource }, {});
 
   return (
-    <ResourceTable
+    <AppTable
       data={data}
       title={resource}
       columns={setting && setting.columns}
+      onRowClick={(_, rowdata) =>
+        console.log(
+          "LOG:  ~ file: MasterData.jsx ~ line 39 ~ ResourceTable ~ rowdata",
+          rowdata
+        )
+      }
     />
   );
 };

@@ -4,7 +4,7 @@ const MTContext = React.createContext();
 
 export const useMT = () => useContext(MTContext);
 
-const MTProvider = ({ children, ps = 15, height = "600px" }) => {
+const MTProvider = ({ children, ps = 15, height = "(100vh-200px)" }) => {
   const [page, setPage] = useState(0);
   const [searchText, setSearchText] = useState("");
   const [pageSize, setPageSize] = useState(ps);
